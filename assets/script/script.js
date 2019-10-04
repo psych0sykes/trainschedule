@@ -53,19 +53,24 @@ function addTrain () {
     trains.push(newTrain)
     
     console.log(trains)
+    
+    trainID = (trains.length + 1)
 }
 
 addTrain()
+
 
 // append trains to table
 
 function appendTrains() {
 
+    $("#tableTrains").empty()
+
     console.log("TRAINS")
 
-for (i = 0 ; i > trains.length ; i++) {
+for (i = 0 ; i < trains.length ; i++) {
 
-    console.log("APPEND")
+    console.log("APPEND " + trainID)
 
     var row = $("<tr>");
     var tName = $("<td>");
@@ -94,3 +99,18 @@ for (i = 0 ; i > trains.length ; i++) {
 }
 
 appendTrains()
+
+// onclick functions on document ready
+
+$(document).ready(function() {
+
+    $("#submit").click(function (){
+        event.preventDefault();
+        trainID = $("#name").val();
+        destination = $("#dest").val();
+        nextTrain = $("#first").val();
+        frequency = $("#frequency").val();
+        addTrain()
+        appendTrains()
+    })
+});
